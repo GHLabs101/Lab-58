@@ -1,11 +1,14 @@
-const express = require("express");
-const app = express();
-const PORT = 3000;
+// Lab 58 - Cache Demo
+const _ = require('lodash');
+const dayjs = require('dayjs');
 
-app.get("/", (req, res) => {
-  res.send("Hello World from Node.js!");
-});
+function greet(name) {
+  const ts = dayjs().format('YYYY-MM-DD HH:mm:ss [UTC]');
+  return `Hello, ${_.startCase(name)}! Built at ${ts}`;
+}
 
-app.listen(PORT, () => {
-  console.log(`Server running at http://localhost:${PORT}`);
-});
+if (require.main === module) {
+  console.log(greet('lab 58 cache demo'));
+}
+
+module.exports = { greet };
