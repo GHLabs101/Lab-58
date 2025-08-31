@@ -26,4 +26,33 @@ jobs:
 
       - name: Build (cached)
         run: npm run build --if-present
+  
+  manual-cache:
+    name: Manual cache (actions/cache)
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      # Cache package manager cache (prefer this over node_modules)
+      - name: Cache npm cache
+        uses: actions/cache@v4
+        with:
+          path: ~/.npm
+          key: npm-${{ runner.os }}-node20-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            npm-${{ runner.os }}-node20-
+            npm-${{ runner.os }}-
+
+      - name: Install dependencies (manual cache)
+        run: npm install
+
+      - name: Build (manual cache)
+        run: npm run build --if-present
+
 
