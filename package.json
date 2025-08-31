@@ -1,12 +1,21 @@
 {
-  "name": "simple-node-project",
+  "name": "lab58-cache-demo",
   "version": "1.0.0",
-  "description": "A very simple Node.js project with Express",
+  "private": true,
+  "description": "Sample Node project for Lab 58 – caching dependencies in GitHub Actions",
   "main": "index.js",
   "scripts": {
-    "start": "node index.js"
+    "build": "node scripts/build.js",
+    "start": "node index.js",
+    "test": "node scripts/smoke-test.js"
+  },
+  "author": "GitHub Labs Series",
+  "license": "MIT",
+  "engines": {
+    "node": ">=18"
   },
   "dependencies": {
-    "express": "^4.18.2"
+    "dayjs": "^1.11.11",
+    "lodash": "^4.17.21"
   }
 }
